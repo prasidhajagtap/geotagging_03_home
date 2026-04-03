@@ -2,34 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Seamex Geo-Attendance</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
     <div class="glass-container">
-        <header>
-            <img src="NEW Seamex logo_testing march 11.png" alt="Seamex Logo" class="logo">
-            <p class="tagline">seamless Geo-Attendance experience</p>
+        <header id="app-header">
+            <img src="NEW Seamex logo_testing march 11.png" alt="Seamex Logo" class="logo" id="main-logo">
+            <p class="tagline" id="tagline-text">seamless experience always</p>
         </header>
 
         <section id="auth-section" class="ui-step">
-            <h2>Welcome</h2>
+            <h2 class="page-title">Login</h2>
             <div class="input-group">
-                <input type="text" id="user-name" placeholder="Full Name" maxlength="60">
-                <input type="text" id="poornata-id" placeholder="Poornata ID (Numbers Only)" inputmode="numeric" pattern="[0-9]*">
+                <input type="text" id="user-name" placeholder="Full Name" maxlength="60" autocomplete="off">
+                <div id="name-error" class="error-msg">Names must be alphabets only</div>
+                
+                <input type="text" id="poornata-id" placeholder="Poornata ID" inputmode="numeric" pattern="[0-9]*" autocomplete="off">
+                <div id="id-error" class="error-msg">ID must be numbers only</div>
             </div>
-            <button id="btn-start" class="btn-primary">Start Day</button>
+            <button id="btn-start" class="btn-primary" disabled>Start Day</button>
         </section>
 
         <section id="main-section" class="ui-step hidden">
-            <h3 id="welcome-note">Welcome!</h3>
-            <p class="id-badge">ID: <span id="display-id"></span></p>
+            <h3 id="welcome-msg" class="welcome-text">Mark your attendance for the day</h3>
+            <p class="user-badge"><span id="display-name"></span> (<span id="display-id"></span>)</p>
             
-            <div class="status-card">
+            <div id="status-display" class="status-card hidden">
                 <p id="timer-display">Shift Duration: 00:00:00</p>
-                <p id="clock-in-info" class="small-text"></p>
+                <div class="mini-summary">
+                    <p id="clock-in-info"></p>
+                    <p id="clock-in-loc-display"></p>
+                </div>
             </div>
 
             <div class="action-area">
@@ -44,7 +50,14 @@
                 </div>
             </div>
 
-            <button id="btn-submit-day" class="btn-submit hidden">Submit the Day</button>
+            <div id="final-summary" class="summary-box hidden">
+                <h4>Shift Summary</h4>
+                <div class="summary-grid">
+                    <div class="summary-item"><strong>In:</strong> <span id="sum-in-time"></span><br><small id="sum-in-loc"></small></div>
+                    <div class="summary-item"><strong>Out:</strong> <span id="sum-out-time"></span><br><small id="sum-out-loc"></small></div>
+                </div>
+                <button id="btn-submit-day" class="btn-submit">Submit the Day</button>
+            </div>
         </section>
     </div>
 
