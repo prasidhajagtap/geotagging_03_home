@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seamex Geo-Attendance</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="glass-container">
+        <header>
+            <img src="NEW Seamex logo_testing march 11.png" alt="Seamex Logo" class="logo">
+            <p class="tagline">seamless experience always</p>
+        </header>
+
+        <section id="auth-section" class="ui-step">
+            <h2>Welcome</h2>
+            <div class="input-group">
+                <input type="text" id="user-name" placeholder="Full Name" maxlength="60">
+                <input type="text" id="poornata-id" placeholder="Poornata ID (Numbers Only)" inputmode="numeric" pattern="[0-9]*">
+            </div>
+            <button id="btn-start" class="btn-primary">Start Day</button>
+        </section>
+
+        <section id="main-section" class="ui-step hidden">
+            <h3 id="welcome-note">Welcome!</h3>
+            <p class="id-badge">ID: <span id="display-id"></span></p>
+            
+            <div class="status-card">
+                <p id="timer-display">Shift Duration: 00:00:00</p>
+                <p id="clock-in-info" class="small-text"></p>
+            </div>
+
+            <div class="action-area">
+                <div id="clock-in-group">
+                    <input type="text" id="in-location-name" placeholder="Clock-in Location Name" maxlength="60">
+                    <button id="btn-clock-in" class="btn-gradient">Clock In</button>
+                </div>
+
+                <div id="clock-out-group" class="hidden">
+                    <input type="text" id="out-location-name" placeholder="Clock-out Location Name" maxlength="60">
+                    <button id="btn-clock-out" class="btn-danger">Clock Out</button>
+                </div>
+            </div>
+
+            <button id="btn-submit-day" class="btn-submit hidden">Submit the Day</button>
+        </section>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
